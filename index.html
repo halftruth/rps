@@ -22,21 +22,26 @@
         return randomPlay();
     }
 
-    function playRound(playerSelection, computerSelection){
+    function playRound(playerMove, computerMove){ 
+        console.log(`PlayerMove: ${playerMove}`);
+        let playerMoveFinal = playerMove == `random` ? randomPlay() : playerMove;
+        console.log(`Player Selection: ${playerMoveFinal}`);
+        console.log(`Computer Selection: ${computerMove}`);  
         // Pseudocode below
         // if both same, then tie
         // if player rock and computer paper, then computer win, else player wins
         // if player not rock and player is paper, and computer is scissors, then computer wins, else player wins
         // if not rock or paper, then player must be scissors. if computer rock, then computer wins, else player wins
-        let gameOutcome = `computer`; // Default message will be error in case I fucked up..
-        
-        if (playerSelection === computerSelection) {
+        let gameOutcome = `computer`; 
+        if (playerMoveFinal === null) {
+            return "computer"; // if player cancels an entry, they forfeit that round
+        } else if (playerMoveFinal === computerMove) {
             gameOutcome = `tie`;
-        } else if (playerSelection == `rock` && computerSelection == `scissors`) {
+        } else if (playerMoveFinal == `rock` && computerMove == `scissors`) {
             gameOutcome = `player`;
-        } else if (playerSelection == `paper` && computerSelection == `rock`) {
+        } else if (playerMoveFinal == `paper` && computerMove == `rock`) {
             gameOutcome = `player`;
-        } else if (playerSelection == `scissors` && computerSelection == `paper`){
+        } else if (playerMoveFinal == `scissors` && computerMove == `paper`){
             gameOutcome = `player`;
         }
         
@@ -47,7 +52,7 @@
     function validatePlayerMove(playerMove){
         if (typeof playerMove == `string`) {
             let downcasedPlayerMove = playerMove.toLowerCase();
-            return ((downcasedPlayerMove == `rock`) || (downcasedPlayerMove == `paper`) || (downcasedPlayerMove == `scissors`))
+            return ((downcasedPlayerMove == `rock`) || (downcasedPlayerMove == `paper`) || (downcasedPlayerMove == `scissors`) || (downcasedPlayerMove == `random`))
         }
         
         return false;
@@ -55,8 +60,10 @@
 
     // prompts user for their move, checks that it is a valid move, and returns it with case-insenstive format
     function getPlayerMove() {
-        let playerMove = window.prompt(`Make your move! (rock, paper, or scissors)`,`rock`);
-        if (!(validatePlayerMove(playerMove))){
+        let playerMove = window.prompt(`Make your move! (rock, paper, scissors, or random)`,`random`);
+        if (playerMove === null) {
+            return null;
+        } else if (!(validatePlayerMove(playerMove))){
             alert(`Your move must be rock, paper, or scissors!`);
             getPlayerMove();    
         }
