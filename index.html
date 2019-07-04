@@ -6,7 +6,86 @@
 <body>
   <script>
     // Your JavaScript goes here!
-    console.log("Hello, World!")
+    const moves = [`rock`, `paper`, `scissors`];
+    const NUMBER_OF_ROUNDS = 5;
+
+    function randomArrayPick(array){
+        let randomChoice = array[Math.floor(Math.random()*array.length)];
+        return randomChoice;
+    }
+
+    function randomPlay(){
+        return randomArrayPick(moves);
+    }
+
+    function computerPlay(){
+        return randomPlay();
+    }
+
+    function playRound(playerSelection, computerSelection){
+        // Pseudocode below
+        // if both same, then tie
+        // if player rock and computer paper, then computer win, else player wins
+        // if player not rock and player is paper, and computer is scissors, then computer wins, else player wins
+        // if not rock or paper, then player must be scissors. if computer rock, then computer wins, else player wins
+        let gameOutcome = `computer`; // Default message will be error in case I fucked up..
+        
+        if (playerSelection === computerSelection) {
+            gameOutcome = `tie`;
+        } else if (playerSelection == `rock` && computerSelection == `scissors`) {
+            gameOutcome = `player`;
+        } else if (playerSelection == `paper` && computerSelection == `rock`) {
+            gameOutcome = `player`;
+        } else if (playerSelection == `scissors` && computerSelection == `paper`){
+            gameOutcome = `player`;
+        }
+        
+        return gameOutcome;
+    }
+
+    // checks that it is a valid player move
+    function validatePlayerMove(playerMove){
+        if (typeof playerMove == `string`) {
+            let downcasedPlayerMove = playerMove.toLowerCase();
+            return ((downcasedPlayerMove == `rock`) || (downcasedPlayerMove == `paper`) || (downcasedPlayerMove == `scissors`))
+        }
+        
+        return false;
+        }
+
+    // prompts user for their move, checks that it is a valid move, and returns it with case-insenstive format
+    function getPlayerMove() {
+        let playerMove = window.prompt(`Make your move! (rock, paper, or scissors)`,`rock`);
+        if (!(validatePlayerMove(playerMove))){
+            alert(`Your move must be rock, paper, or scissors!`);
+            getPlayerMove();    
+        }
+        return playerMove.toLowerCase();
+    }
+
+    function game(){
+        // game code here
+        let playerWins = 0;
+        let computerWins = 0;
+        for (let i = 0; i < NUMBER_OF_ROUNDS; i++) {
+            switch(playRound(getPlayerMove(), computerPlay())) {
+                case(`player`):
+                    playerWins += 1;
+                    break;
+                case(`computer`):
+                    computerWins += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (playerWins == computerWins) {
+            return `Wow, close one! You tied. ${playerWins} vs. ${computerWins}`
+        } else {
+            return (playerWins > computerWins) ? `You won! ${playerWins} vs. ${computerWins}` : `You lost... ${playerWins} vs. ${computerWins}`
+        }
+    }
+
   </script>
 </body>
 </html>
