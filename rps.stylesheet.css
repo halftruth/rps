@@ -1,0 +1,77 @@
+:root {
+    --main-bg-color: #ECE8EF;
+    --main-text-color: #141B41;
+    --main-clicked-color: #A63A50;
+    --main-emphasis-color: #F37748;
+    --main-border-color: #247BA0;
+    color: var(--main-text-color);
+}
+
+
+h1{
+    font-size: 32px;
+    font-weight: bold;
+}
+body{
+    font-size: 12px;
+}
+.btn {
+    justify-self: center;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid var(--main-border-color);
+    border-radius: 5px;
+    padding: 5px 0px;
+    width: 80%;
+    text-align: center;
+    background-color: var(--main-bg-color);
+}
+
+/* GRID SYSTEM */
+.grid-container {
+    display: grid;
+    grid: 
+        "header header header header header" 100px
+        "scoreboard game game game ." 100px
+        "scoreboard . . . ." 100px
+        / 1fr 1fr 1fr 1fr 1fr;
+/* 
+    grid-template-rows: 30px 100px 30px;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-areas:    
+        "header      header  header  header  header" 
+        "scoreboard  game    game    game    ."
+        "scoreboard  .       .       .       ."; */
+    grid-gap: 10px;
+}
+
+.header {
+    grid-area: header;
+    justify-self: center;
+    align-self: center;
+}
+
+.scoreboard {
+    grid-area: scoreboard;
+    justify-self: center;
+}
+.game {
+    grid-area: game;
+    justify-self: stretch;
+    align-self: center;
+    /* justify-items: center; */
+    display: grid;
+    grid: 
+        "rock paper scissors" 1fr
+        ". random ." 1fr
+        / 1fr 1fr 1fr;
+}
+#rock {
+    grid-area: rock;
+}
+#paper {
+    grid-area: paper;
+}
+#scissors {
+    grid-area: scissors;
+}
