@@ -1,9 +1,14 @@
 :root {
-    --main-bg-color: #ECE8EF;
+    --main-bg-color: #FEFEFE;
+    --main-text-color: #000000;
+    --main-clicked-color: #6C6B71;
+    --main-emphasis-color: #9E9796;
+    --main-border-color: #403F40;
+    /* --main-bg-color:#ECE8EF;
     --main-text-color: #141B41;
     --main-clicked-color: #A63A50;
     --main-emphasis-color: #F37748;
-    --main-border-color: #247BA0;
+    --main-border-color: #247BA0; */
     color: var(--main-text-color);
 }
 
@@ -12,66 +17,65 @@ h1{
     font-size: 32px;
     font-weight: bold;
 }
+h2 {
+    font-size: 8vh;
+}
 body{
     font-size: 12px;
 }
 .btn {
-    justify-self: center;
-    font-size: 24px;
+    /* font-size: 5vh; */
     font-weight: bold;
     border: 1px solid var(--main-border-color);
     border-radius: 5px;
     padding: 5px 0px;
-    width: 80%;
+    margin: 5px;
     text-align: center;
+    min-width: 200px;
+    padding: 5px;
     background-color: var(--main-bg-color);
+    font-size: 5vh;
 }
 
-/* GRID SYSTEM */
-.grid-container {
-    display: grid;
-    grid: 
-        "header header header header header" 100px
-        "scoreboard game game game ." 100px
-        "scoreboard . . . ." 100px
-        / 1fr 1fr 1fr 1fr 1fr;
-/* 
-    grid-template-rows: 30px 100px 30px;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-areas:    
-        "header      header  header  header  header" 
-        "scoreboard  game    game    game    ."
-        "scoreboard  .       .       .       ."; */
-    grid-gap: 10px;
+.game-computerArea {
+    font-size: 15vh;
 }
 
-.header {
-    grid-area: header;
-    justify-self: center;
-    align-self: center;
+.scoreboard-scores {
+    font-size: 10vw;
+    padding: 0px 10px;
+    /* border: 1px solid black; */
+    /* padding: 0px 10px; */
+    margin: 5px 0px;
+}
+.scoreboard-scores p {
+    border: 1px solid black;
+    padding: 0px 10px;
+}
+.scoreboard-round {
+    font-size: 3vw;
+    padding: 5px 0px;
+}
+#scoreboard-round--counter {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 0px 5px;
+    font-size: 5vw;
 }
 
-.scoreboard {
-    grid-area: scoreboard;
-    justify-self: center;
+.scoreboard-info--message {
+    width: 80%;
+    font-size: 5vw;
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    margin: 5px 0px;
 }
-.game {
-    grid-area: game;
-    justify-self: stretch;
-    align-self: center;
-    /* justify-items: center; */
-    display: grid;
-    grid: 
-        "rock paper scissors" 1fr
-        ". random ." 1fr
-        / 1fr 1fr 1fr;
-}
-#rock {
-    grid-area: rock;
-}
-#paper {
-    grid-area: paper;
-}
-#scissors {
-    grid-area: scissors;
+.scoreboard-info--interact {
+    font-size: 2vw;
+    padding: 5px;
+    margin: 5px 0px;
+    border: 1px solid black;
+    width: 50%;
+    text-align: center;
 }

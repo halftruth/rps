@@ -3,20 +3,49 @@
 <head>
   <title>Halftruth's RPS with GUI</title>
   <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="rps.layout.css">
   <link rel="stylesheet" type="text/css" href="rps.stylesheet.css">
 </head>
 <body>
     <div class="grid-container">    
         <div class="header">
-            <h1>Halftruth's RPS with GUI</h1>
+            <div class="header_logo">
+                RPS
+            </div>
+            <div class="header_devTag">
+                Halftruth Development
+            </div>
         </div>
         <div class="scoreboard">
-            test
+            <div class="scoreboard-scores">
+                <p id="scoreboard-scores--player">5</p>
+                <p id="scoreboard-scores--computer">3</p>
+            </div>
+            <div class="scoreboard-round">
+                <p>Round</p>
+                <p id="scoreboard-round--counter">1</p>
+            </div>
+            <div class="scoreboard-info">
+                <p class="scoreboard-info--message">You won!</p>
+                <p class="scoreboard-info--interact" id="reset">Reset</p>
+            </div>
         </div>
         <div class="game">
-            <btn class="btn" id="rock">rock</btn>
-            <btn class="btn" id="paper">paper</btn>
-            <btn class="btn" id="scissors">scissors</btn>
+            <div class="game-header">
+                <h2>Make your move!</h2>
+            </div>
+            <div class="game-playerArea">
+                <btn class="btn" id="rock">rock</btn>
+                <btn class="btn" id="paper">paper</btn>
+                <btn class="btn" id="scissors">scissors</btn>
+                <btn class="btn" id="random">random</btn>
+            </div>
+            <div class="game-computerArea">
+                ?
+            </div>
+        </div>
+        <div class="footer">
+
         </div>
     </div>
   <!-- <script src="rps.javascript.js"></script> -->

@@ -1,0 +1,87 @@
+/* GRID SYSTEM */
+.grid-container {
+    display: grid;
+    grid: 
+        "header      header      header      header      header  header  header  header  header  header  header  header" 50px
+        "scoreboard  scoreboard  scoreboard  scoreboard  game    game    game    game    game    game    game    game"   1fr
+        "scoreboard  scoreboard  scoreboard  scoreboard  game    game    game    game    game    game    game    game"   1fr
+        "footer      footer      footer      footer      footer  footer  footer  footer  footer  footer  footer  footer" 100px;
+        /30px        1fr         1fr         1fr         1fr     1fr     1fr     1fr     1fr     1fr     1fr     30px;
+    min-height: 100vh;
+    gap: 10px;
+    /* justify-items: stretch; */
+}
+
+.header, .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header {
+    grid-area: header;
+    /* text-align: center; */
+    background-color: #6C6B71;
+}
+
+.scoreboard {
+    grid-area: scoreboard;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #403F40;
+}
+.scoreboard-scores {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.scoreboard-round {
+    display: flex;
+    flex: 1;
+    flex-flow: column nowrap;
+    justify-items: center;
+    align-items: center;
+}
+.scoreboard-info {
+    display: flex;
+    flex: 2;
+    flex-flow: column nowrap;
+    place-items: center flex-start;
+}
+
+.game {
+    grid-area: game;
+    display: grid;
+    grid: 
+        "gameHeader gameHeader" 20%
+        "player computer" 1fr
+        /1fr 1fr;
+    background-color: #9E9796;
+    gap: 10px;
+
+}
+.game-header{
+    grid-area: gameHeader;
+    background-color: blue;
+    align-self: center;
+}
+.game-playerArea{
+    grid-area: player;
+    background-color: yellow;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.game-computerArea{
+    grid-area: computer;
+    background-color: green;
+    justify-self: center;
+    align-self: center;
+}
+.footer {
+    grid-area: footer;
+    background-color: red;
+}
