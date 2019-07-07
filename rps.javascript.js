@@ -1,44 +1,66 @@
 // Your JavaScript goes here!
 const moves = [`rock`, `paper`, `scissors`];
-const NUMBER_OF_ROUNDS = 5;
+let number_of_rounds = 0;
+let playerScore = 0;
+let computerScore = 0;
+const container = document.querySelector('.grid-container');
+
+const scoreboard = container.querySelector('.scoreboard');
+const playerScoreContainer = scoreboard.querySelector('#scoreboard-scores--player');
+const computerScoreContainer = scoreboard.querySelector('#scoreboard-scores--computer');
+const roundCounter = scoreboard.querySelector('#scoreboard-round--counter');
+
+playerScoreContainer.textContent = `${playerScore}`;
+computerScoreContainer.textContent = `${computerScore}`;
+roundCounter.textContent = `${number_of_rounds}`;
+
+function updateScoreboard(outcome) {
+    roundCounter.textContent = `${number_of_rounds}`;
+    if (outcome == "player") {
+        playerScoreContainer.textContent = `${playerScore}`;
+    } else if (outcome == "computer") {
+        computerScoreContainer.textContent = `${computerScore}`;
+    } else {
+        return;
+    }
+}
+
+const buttons = container.querySelectorAll(".btn");
+buttons.forEach((button)=> {
+    button.addEventListener('click', (e) =>{
+        let playerMove = e.target.getAttribute('id')
+        console.log(game(playerMove));
+    });
+})
+
 
 // Plays RPS Game NUMBER_OF_ROUNDS times and outputs winner based on most number of round wins
-function game(){
-    // game code here
-    let playerScore = 0;
-    let computerScore = 0;
+function game(playerMove){
     let winner;
-
-    for (let i = 0; i < NUMBER_OF_ROUNDS; i++) {
-        let playerMove;
-        do {
-            playerMove = setPlayerMove(getPlayerMove());
-            if (playerMove == null) {
-                return; //quit program, player has cancelled game
-            }
-        } while (validatePlayerMove(playerMove) == false);
-        let computerMove = computerPlay();
+    let computerMove = computerPlay();
+    playerMove = (playerMove == 'random') ? randomPlay() : playerMove;
         
-        let roundOutcome = playRound(playerMove, computerMove);
-        switch(roundOutcome) {
-            case(`player`):
-                playerScore += 1;
-                break;
-            case(`computer`):
-                computerScore += 1;
-                break;
-            case(`tie`):
-                break;
-        }
+    let roundOutcome = playRound(playerMove, computerMove);
+    switch(roundOutcome) {
+        case(`player`):
+            playerScore += 1;
+            break;
+        case(`computer`):
+            computerScore += 1;
+            break;
+        case(`tie`):
+            break;
     }
+    number_of_rounds += 1;
+    updateScoreboard(roundOutcome);
 
-    winner = setGameWinner(playerScore, computerScore);
+    // winner = setGameWinner(playerScore, computerScore);
 
-    if (winner == `tie`) {
-        return `Wow, close one! You tied. ${playerScore} vs. ${computerScore}`
-    } else {
-        return (winner == `player`) ? `You won! ${playerScore} vs. ${computerScore}` : `You lost... ${playerScore} vs. ${computerScore}`
-    }
+    // if (winner == `tie`) {
+    //     return `Wow, close one! You tied. ${playerScore} vs. ${computerScore}`
+    // } else {
+    //     return (winner == `player`) ? `You won! ${playerScore} vs. ${computerScore}` : `You lost... ${playerScore} vs. ${computerScore}`
+    // }
 }
 
 // Returns game winner
